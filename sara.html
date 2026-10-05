@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Sara ♡</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    background:
+        radial-gradient(circle at 15% 20%,rgba(244,180,205,.18),transparent 30%),
+        radial-gradient(circle at 85% 80%,rgba(170,210,225,.15),transparent 30%),
+        #0d0b0b;
+    color:#f8eee7;
+    font-family:Poppins,sans-serif;
+}
+
+/* ================= LOGIN ================= */
+
+.login-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.login-box{
+    width:100%;
+    max-width:420px;
+    padding:45px 32px;
+    text-align:center;
+
+    background:rgba(31,24,24,.92);
+    border:1px solid rgba(235,175,197,.25);
+    border-radius:28px;
+
+    box-shadow:
+        0 30px 90px rgba(0,0,0,.55);
+
+    backdrop-filter:blur(15px);
+}
+
+.heart{
+    font-size:30px;
+    color:#e6a5ba;
+    margin-bottom:15px;
+}
+
+.login-box h1{
+    font-family:"Playfair Display",serif;
+    font-size:42px;
+    font-weight:600;
+}
+
+.login-box p{
+    color:#cbbdb5;
+    font-size:13px;
+    line-height:1.8;
+    margin:12px 0 30px;
+}
+
+.input-group{
+    text-align:left;
+    margin-bottom:17px;
+}
+
+.input-group label{
+    display:block;
+    color:#cdbeb5;
+    font-size:11px;
+    margin:0 0 7px 5px;
+    letter-spacing:1px;
+}
+
+.input-group input{
+    width:100%;
+    padding:15px;
+
+    border-radius:14px;
+    border:1px solid #574541;
+
+    background:#171212;
+    color:white;
+
+    outline:none;
+    font-family:Poppins;
+}
+
+.input-group input:focus{
+    border-color:#e3a7bb;
+    box-shadow:0 0 0 4px rgba(227,167,187,.08);
+}
+
+.login-button{
+    width:100%;
+    padding:15px;
+
+    border:none;
+    border-radius:14px;
+
+    background:#e4a7bb;
+    color:#24171b;
+
+    font-family:Poppins;
+    font-weight:600;
+
+    cursor:pointer;
+    transition:.3s;
+}
+
+.login-button:hover{
+    transform:translateY(-2px);
+    background:#f0b9cb;
+}
+
+.error{
+    height:20px;
+    margin-top:12px;
+
+    color:#e98d94;
+    font-size:12px;
+}
+
+/* ================= BIRTHDAY ================= */
+
+.birthday-page{
+    min-height:100vh;
+    padding:60px 20px;
+
+    text-align:center;
+
+    background:
+        radial-gradient(circle at 50% 20%,rgba(228,167,187,.12),transparent 35%),
+        #0d0b0b;
+}
+
+.hidden{
+    display:none!important;
+}
+
+.small-title{
+    color:#c9bbb3;
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.birthday-title{
+    margin-top:8px;
+
+    font-family:"Playfair Display",serif;
+
+    font-size:clamp(35px,9vw,65px);
+}
+
+.birthday-title span{
+    color:#e3a5ba;
+}
+
+.instruction{
+    margin-top:8px;
+    color:#b9aaa3;
+    font-size:13px;
+}
+
+/* ================= ENVELOPE ================= */
+
+.envelope-area{
+    height:400px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    perspective:1000px;
+}
+
+.envelope{
+    position:relative;
+
+    width:340px;
+    height:220px;
+
+    cursor:pointer;
+
+    transform-style:preserve-3d;
+
+    filter:drop-shadow(0 30px 35px rgba(0,0,0,.5));
+}
+
+/* جسم الظرف */
+
+.envelope-back{
+    position:absolute;
+    inset:0;
+
+    background:#c89b85;
+
+    border-radius:7px;
+}
+
+/* الورقة */
+
+.letter{
+    position:absolute;
+
+    width:86%;
+    height:82%;
+
+    left:7%;
+    top:6%;
+
+    background:#f4e7d7;
+
+    color:#362727;
+
+    border-radius:5px;
+
+    z-index:2;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    transition:1s cubic-bezier(.2,.8,.2,1);
+
+    box-shadow:0 5px 18px rgba(0,0,0,.15);
+}
+
+.letter p{
+    font-family:"Playfair Display",serif;
+    font-size:20px;
+}
+
+/* مثلثات الظرف */
+
+.envelope-front{
+    position:absolute;
+    inset:0;
+    z-index:4;
+    overflow:hidden;
+}
+
+.envelope-front:before,
+.envelope-front:after{
+    content:"";
+
+    position:absolute;
+    bottom:0;
+
+    width:0;
+    height:0;
+
+    border-style:solid;
+}
+
+.envelope-front:before{
+    left:0;
+
+    border-width:
+        0
+        0
+        220px
+        170px;
+
+    border-color:
+        transparent
+        transparent
+        #b98773
+        transparent;
+}
+
+.envelope-front:after{
+    right:0;
+
+    border-width:
+        0
+        170px
+        220px
+        0;
+
+    border-color:
+        transparent
+        transparent
+        #b98773
+        transparent;
+}
+
+/* الغطاء */
+
+.flap{
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:0;
+    height:0;
+
+    border-left:170px solid transparent;
+    border-right:170px solid transparent;
+    border-top:115px solid #d7aa94;
+
+    transform-origin:top center;
+
+    transition:1s cubic-bezier(.2,.8,.2,1);
+
+    z-index:5;
+}
+
+/* الختم */
+
+.seal{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:50px;
+    height:50px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#8d343e;
+
+    color:#ffeaea;
+
+    font-size:20px;
+
+    z-index:10;
+
+    transition:.5s;
+}
+
+/* ================= OPEN ================= */
+
+.envelope.open .flap{
+    transform:rotateX(180deg);
+    z-index:1;
+}
+
+.envelope.open .letter{
+    transform:translateY(-145px);
+    z-index:8;
+}
+
+.envelope.open .seal{
+    opacity:0;
+    transform:
+        translate(-50%,-50%)
+        scale(.3);
+}
+
+/* ================= MESSAGE ================= */
+
+.message{
+    max-width:760px;
+
+    margin:auto;
+
+    opacity:0;
+
+    transform:translateY(30px);
+
+    transition:1s;
+
+    pointer-events:none;
+}
+
+.message.show{
+    opacity:1;
+
+    transform:translateY(0);
+
+    pointer-events:auto;
+}
+
+.message-card{
+    background:#f1e4d5;
+
+    color:#332525;
+
+    padding:clamp(28px,6vw,55px);
+
+    border-radius:28px;
+
+    text-align:left;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35);
+}
+
+.message-card .to{
+    color:#9d5366;
+
+    font-size:12px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    margin-bottom:15px;
+}
+
+.message-card h2{
+    font-family:"Playfair Display",serif;
+
+    font-size:clamp(28px,7vw,48px);
+
+    margin-bottom:23px;
+}
+
+.message-card p{
+    color:#554441;
+
+    font-size:15px;
+
+    line-height:2;
+
+    margin-bottom:15px;
+}
+
+.signature{
+    margin-top:25px;
+
+    font-family:"Playfair Display",serif;
+
+    font-size:23px;
+
+    color:#8d343e;
+}
+
+.footer-text{
+    margin-top:30px;
+
+    color:#cdbdb5;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+    text-align:center;
+}
+
+/* FLOATING HEARTS */
+
+.floating-heart{
+    position:fixed;
+
+    bottom:-30px;
+
+    pointer-events:none;
+
+    z-index:100;
+
+    animation:float 5s linear forwards;
+}
+
+@keyframes float{
+
+    0%{
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity:.9;
+    }
+
+    100%{
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity:0;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .login-box{
+        padding:40px 25px;
+    }
+
+    .login-box h1{
+        font-size:35px;
+    }
+
+    .envelope{
+        transform:scale(.85);
+    }
+
+    .envelope.open .letter{
+        transform:translateY(-120px);
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<audio id="birthdaySong" src="sara.mpeg" preload="auto"></audio>
+
+<!-- ================= LOGIN ================= -->
+
+<section id="loginPage" class="login-page">
+
+    <div class="login-box">
+
+        <div class="heart">♥</div>
+
+        <h1>A Little Surprise</h1>
+
+        <p>
+            There is something special waiting for you...
+            <br>
+            But first, prove it's you.
+        </p>
+
+        <form id="loginForm">
+
+            <div class="input-group">
+
+                <label>YOUR NAME</label>
+
+                <input
+                    id="username"
+                    type="text"
+                    placeholder="Enter your name"
+                    autocomplete="off"
+                >
+
+            </div>
+
+            <div class="input-group">
+
+                <label>YOUR BIRTHDAY</label>
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="DD/MM/YYYY"
+                    autocomplete="off"
+                >
+
+            </div>
+
+            <button class="login-button">
+                Open my surprise ♡
+            </button>
+
+            <div id="error" class="error"></div>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- ================= BIRTHDAY PAGE ================= -->
+
+<section id="birthdayPage" class="birthday-page hidden">
+
+    <div class="small-title">
+        A Little Birthday Surprise
+    </div>
+
+    <h1 class="birthday-title">
+        Happy Birthday,
+        <span>Sara</span> ♡
+    </h1>
+
+    <p class="instruction">
+        Tap the envelope to open it.
+    </p>
+
+
+    <!-- ENVELOPE -->
+
+    <div class="envelope-area">
+
+        <div id="envelope" class="envelope">
+
+            <div class="envelope-back"></div>
+
+            <div class="letter">
+
+                <p>
+                    For you,
+                    <br>
+                    with love...
+                </p>
+
+            </div>
+
+            <div class="envelope-front"></div>
+
+            <div class="flap"></div>
+
+            <div class="seal">
+                ♥
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MESSAGE ================= -->
+
+    <div id="message" class="message">
+
+        <div class="message-card">
+
+            <div class="to">
+                To Sara
+            </div>
+
+            <h2>
+                Happy Birthday, my favorite person.
+            </h2>
+
+            <!-- غيّر الكلام من هنا -->
+
+            <p>
+                النهارده مش يوم عادي،
+                <p/>
+
+                <p>الدكتورة بتاعتنا كبرت سنة خلاص
+
+كل سنة وانتي طيبة يا أحلى وأجمل سارة في الدنيا، وعقبال مليون سنة في صحة وسعادة 
+
+وإن شاء الله السنة الجاية تبقي في طب أسنان وتبقي أشطر دكتورة في مصر 
+
+وبتمنى سنتك الجديدة تكون مليانة ضحكة حقيقية، وراحة، ونجاح، وحاجات حلوة كتير تستاهليها.
+
+وإن شاء الله كل سنة تكون أحلى من اللي قبلها، وتحققي كل حاجة نفسك فيها ❤️❤️</p>
+                
+
+            <div class="signature">
+                With love, always.
+            </div>
+
+        </div>
+
+        <div class="footer-text">
+            Made with Ahmed ♡
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* ================= LOGIN DATA ================= */
+
+const CORRECT_USERNAME = "sara";
+
+const CORRECT_PASSWORD = "6/10/2008";
+
+
+/* ================= ELEMENTS ================= */
+
+const loginPage =
+    document.getElementById("loginPage");
+
+const birthdayPage =
+    document.getElementById("birthdayPage");
+
+const loginForm =
+    document.getElementById("loginForm");
+
+const error =
+    document.getElementById("error");
+
+const envelope =
+    document.getElementById("envelope");
+
+const birthdaySong =
+    document.getElementById("birthdaySong");
+
+const message =
+    document.getElementById("message");
+
+
+/* ================= LOGIN ================= */
+
+loginForm.addEventListener("submit",function(event){
+
+    event.preventDefault();
+
+    const username =
+        document
+        .getElementById("username")
+        .value
+        .trim()
+        .toLowerCase();
+
+    const password =
+        document
+        .getElementById("password")
+        .value
+        .trim();
+
+
+    if(
+        username === CORRECT_USERNAME &&
+        password === CORRECT_PASSWORD
+    ){
+
+        loginPage.classList.add("hidden");
+
+        birthdayPage.classList.remove("hidden");
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    }
+
+    else{
+
+        error.textContent =
+            "Wrong name or birthday. Try again ♡";
+
+    }
+
+});
+
+
+/* ================= OPEN ENVELOPE ================= */
+
+envelope.addEventListener("click",function(){
+
+    if(
+        envelope.classList.contains("open")
+    ){
+        return;
+    }
+
+    envelope.classList.add("open");
+
+    birthdaySong.play().catch(function(){
+        // Playback can fail if the browser cannot load the audio file.
+    });
+
+
+    setTimeout(function(){
+
+        message.classList.add("show");
+
+        message.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+        });
+
+        createHearts();
+
+    },900);
+
+});
+
+
+/* ================= HEARTS ================= */
+
+function createHearts(){
+
+    for(
+        let i=0;
+        i<20;
+        i++
+    ){
+
+        setTimeout(function(){
+
+            const heart =
+                document.createElement("div");
+
+            heart.className =
+                "floating-heart";
+
+            heart.innerHTML =
+                Math.random()>.35
+                ? "♥"
+                : "♡";
+
+            heart.style.left =
+                Math.random()*100+"vw";
+
+            heart.style.fontSize =
+                (12+Math.random()*18)+"px";
+
+            heart.style.color =
+                Math.random()>.5
+                ? "#e4a7bb"
+                : "#c89b85";
+
+            heart.style.animationDuration =
+                (4+Math.random()*3)+"s";
+
+            document.body.appendChild(heart);
+
+
+            setTimeout(function(){
+
+                heart.remove();
+
+            },7000);
+
+        },i*160);
+
+    }
+
+}
+</script>
+
+</body>
+</html>
